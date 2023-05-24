@@ -1,8 +1,8 @@
-import { PropsWithChildren, type HTMLAttributes } from "react";
+import { PropsWithChildren, type ButtonHTMLAttributes } from "react";
 
 import './styles.css';
 
-interface Props extends HTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   intent?: 'primary';
 }
 
