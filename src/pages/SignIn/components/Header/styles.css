@@ -1,0 +1,16 @@
+.signin-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin-header svg {
+  color: var(--color-primary);
+}
+
+.signin-header h1 {
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0.5rem 0;
+}
