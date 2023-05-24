@@ -10,7 +10,7 @@ type SessionData = {
 type SignIn = (accessToken: string) => Promise<SessionData | undefined>;
 
 type SignInResponse = {
-  errors: [];
+  errors: Record<string, string>;
   response: {
     account: {
       email: string;
@@ -31,11 +31,15 @@ export const SessionProvider: React.FC<PropsWithChildren> = props => {
   const [session, setSession] = useState<SessionData>();
 
   const signIn: SignIn = async accessToken => {
+    if(!accessToken) {
+      throw new Error('You must provide an access token.');
+    }
+
     const response = await fetchFromFootballApi(accessToken, '/status');
 
     const data: SignInResponse = await response.json();
 
-    if(data.errors) {
+    if(data.errors || Object.keys(data.errors).length > 0) {
       throw new Error('An error occurred when signin in.');
     }
 
@@ -45,7 +49,6 @@ export const SessionProvider: React.FC<PropsWithChildren> = props => {
     }
 
     setSession(updatedSession)
-
     return updatedSession;
   }
 
