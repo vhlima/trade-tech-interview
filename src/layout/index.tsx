@@ -1,12 +1,16 @@
-import { PropsWithChildren } from "react";
+import { type HTMLAttributes, type PropsWithChildren } from "react";
 
 import './styles.css';
 
-const Layout: React.FC<PropsWithChildren> = props => {
-  const { children } = props;
+type Props = HTMLAttributes<HTMLDivElement>;
+
+const Layout: React.FC<PropsWithChildren<Props>> = props => {
+  const { className, children, ...rest } = props;
+
+  const classNameFormatted = className ? ` ${className}` : ''
 
   return (
-    <div className="layout">
+    <div className={`layout${classNameFormatted}`} {...rest}>
       {children}
     </div>
   )
