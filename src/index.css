@@ -12,11 +12,15 @@ code {
     monospace;
 }
 
-h1 {
+h1, p {
   margin: 0;
 }
 
 :root {
   --background-primary: #ffffff;
   --background-secondary: #f3f4f6;
+
+  --screen-sm: 640px;
+  --screen-md: 768px;
+  --screen-lg: 1024px;
 }
