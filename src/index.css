@@ -27,6 +27,8 @@ button {
 }
 
 :root {
+  --color-primary: #6366f1;
+  
   --text-primary: #111827;
 
   --background-primary: #ffffff;
