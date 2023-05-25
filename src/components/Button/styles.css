@@ -10,3 +10,7 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.button.fullWidth {
+  width: 100%;
+}
