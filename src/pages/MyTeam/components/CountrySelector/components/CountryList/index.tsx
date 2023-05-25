@@ -3,8 +3,6 @@ import { useCountrySelector } from '../../../../hooks/useCountrySelector';
 import Select from '../../../../../../components/Select';
 import Typography from '../../../../../../components/Typography';
 
-import './styles.css';
-
 interface Props {
   selectedCountryId?: string;
   onSelect: (countryId: string) => void;
@@ -21,7 +19,7 @@ const CountryList: React.FC<Props> = props => {
     (data || []).map(country => ({ name: country.name, logoUrl: country.flag }));
 
   return (
-    <div className="country-list">
+    <div>
       {isLoading && <Typography component="p">Loading...</Typography>}
 
       {error && <Typography component="p" color="error">{error}</Typography>}
