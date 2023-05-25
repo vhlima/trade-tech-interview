@@ -13,3 +13,7 @@
 .typography.bold {
   font-weight: 600;
 }
+
+.typography.tertiary {
+  color: #ffff;
+}
