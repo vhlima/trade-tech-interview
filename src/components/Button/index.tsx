@@ -1,5 +1,7 @@
 import { PropsWithChildren, type ButtonHTMLAttributes } from "react";
 
+import clsx from "clsx";
+
 import './styles.css';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -9,12 +11,8 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: React.FC<PropsWithChildren<Props>> = props => {
   const { intent = 'primary', className, children, ...rest } = props;
 
-  const classNameFormatted = className ? ` ${className}` : '';
-
-  const buttonIntentClassName = `button ${intent}`;
-
   return (
-    <button type="button" className={`${buttonIntentClassName}${classNameFormatted}`} {...rest}>
+    <button type="button" className={clsx('button', intent, className && className)} {...rest}>
       {children}
     </button>
   )
