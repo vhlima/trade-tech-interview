@@ -5,8 +5,6 @@ import { useCountrySelector } from '../../hooks/useCountrySelector';
 import SelectPicker from '../../../../components/SelectPicker';
 import CountrySelect from './components/CountrySelect';
 
-import './styles.css';
-
 const CountrySelector: React.FC = () => {
   const { selectedCountry } = useCountrySelector();
 
