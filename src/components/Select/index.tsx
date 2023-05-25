@@ -1,6 +1,6 @@
 import { type PropsWithChildren } from 'react';
 
-import ToggleOption from '../ToggleOption';
+import SelectOption from '../SelectOption';
 
 import './styles.css';
 
@@ -22,7 +22,7 @@ const Select: React.FC<PropsWithChildren<Props>> = props => {
     <ul className="select-option-list">
       {options.map(option => (
         <li key={`option-${option.name}`}>
-          <ToggleOption isSelected={option.name === selectedOptionId} {...option} onClick={() => onChange(option.name)} />
+          <SelectOption isSelected={option.name === selectedOptionId} {...option} onClick={() => onChange(option.name)} />
         </li>
       ))}
     </ul>

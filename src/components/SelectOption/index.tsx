@@ -12,18 +12,18 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   isSelected?: boolean;
 }
 
-const ToggleOption: React.FC<PropsWithChildren<Props>> = props => {
+const SelectOption: React.FC<PropsWithChildren<Props>> = props => {
   const { className, name, logoUrl, isSelected, children,...rest } = props;
 
   return (
-    <button className={clsx('toggle-button', {
+    <button className={clsx('select-option-button', {
       selected: isSelected,
     }, className && className)} type="button" {...rest}>
-      {logoUrl && <img className="toggle-button-logo" src={logoUrl} alt={name} />}
+      {logoUrl && <img className="select-option-logo" src={logoUrl} alt={name} />}
       <Typography component="span" color={!isSelected ? 'secondary' : 'tertiary'}>{name}</Typography>
       {children}
     </button>
   )
 }
 
-export default ToggleOption;
+export default SelectOption;
