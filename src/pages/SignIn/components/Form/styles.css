@@ -2,36 +2,6 @@
   margin-top: 2rem;
 }
 
-.signin-input-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.signin-input-container label {
-  margin-bottom: 0.5rem;
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.signin-input-container input {
-  height: 24px;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  border: 1px solid #6b7280;
-}
-
-.signin-input-container input:focus {
-  outline: 0;   
-  border-color: var(--color-primary);
-}
-
-.signin-input-container small {
-  margin-top: 0.25rem;
-  color: var(--text-primary);
-}
-
 .signin-form button {
   width: 100%;
   margin-top: 2rem;
@@ -39,5 +9,4 @@
 
 .form-error {
   margin-bottom: 1rem;
-  color: red;
 }

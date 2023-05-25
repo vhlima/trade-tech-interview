@@ -8,6 +8,8 @@ import { useErrorHandler } from '../../../../hooks/useErrorHandler';
 
 import Typography from '../../../../components/Typography';
 
+import SignInFormInput from './components/SignInFormInput';
+
 import './styles.css';
 
 type Props = Omit<HTMLAttributes<HTMLFormElement>, 'onSubmit'>;
@@ -35,12 +37,13 @@ const SignInForm: React.FC<Props> = props => {
         <Typography className="form-error" component="p" color="error">{errorMessage}</Typography>
       )}
 
-      <div className="signin-input-container">
-        <label htmlFor="accessToken">Access token</label>
-        <input id="accessToken" value={accessToken} onChange={e => setAccessToken(e.target.value)} data-testid="access-token-input" />
-
-        <small>You can retrieve the access token from your api-football account.</small>
-      </div>
+      <SignInFormInput 
+        labelText="Access token"
+        description="You can retrieve the access token from your api-football account."
+        id="accessToken" 
+        value={accessToken} 
+        onChange={e => setAccessToken(e.target.value)} 
+      />
 
       <Button type="submit" disabled={!accessToken}>
         Sign in
