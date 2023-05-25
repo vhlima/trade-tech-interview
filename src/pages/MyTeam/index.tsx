@@ -2,7 +2,11 @@ import Card from "../../components/Card";
 
 import Layout from "../../layout";
 
+import { CountrySelectorProvider } from "./hooks/useCountrySelector";
+
 import MyTeamHeader from "./components/Header";
+import CountrySelector from "./components/CountrySelector";
+
 
 import './styles.css';
 
@@ -10,7 +14,11 @@ const MyTeamPage: React.FC = () => {
   return (
     <Layout className="myteam-page">
       <Card>
-        <MyTeamHeader />
+        <CountrySelectorProvider>
+          <MyTeamHeader />
+
+          <CountrySelector />
+        </CountrySelectorProvider>
       </Card>
     </Layout>
   )
