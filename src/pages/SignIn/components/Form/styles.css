@@ -32,7 +32,7 @@
   color: var(--text-primary);
 }
 
-.signin-container button {
+.signin-form button {
   width: 100%;
   margin-top: 2rem;
 }
