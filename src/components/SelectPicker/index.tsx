@@ -15,16 +15,11 @@ interface Props {
     name: string;
     logoUrl: string;
   };
+  onClick: () => void;
 }
 
 const SelectPicker: React.FC<PropsWithChildren<Props>> = props => {
-  const { selectedOption, labelText, emptyText, children } = props;
-
-  const [isOpen, setOpen] = useState<boolean>(false);
-
-  const handleToggle = () => {
-    setOpen(previousState => !previousState);
-  }
+  const { selectedOption, labelText, emptyText, children, onClick } = props;
 
   return (
     <div className="select-picker">
@@ -35,13 +30,13 @@ const SelectPicker: React.FC<PropsWithChildren<Props>> = props => {
           className="select-picker-button"
           name={selectedOption ? selectedOption.name : emptyText} 
           logoUrl={selectedOption?.logoUrl} 
-          onClick={handleToggle}
+          onClick={onClick}
         >
           <BsChevronDown size={20} />
         </SelectOption>
       </div>
 
-      {isOpen && children}
+      {children}
     </div>
   )
 }

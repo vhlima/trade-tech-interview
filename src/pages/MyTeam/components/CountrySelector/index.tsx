@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { useCountrySelector } from '../../hooks/useCountrySelector';
 
 import SelectPicker from '../../../../components/SelectPicker';
@@ -8,18 +10,23 @@ import './styles.css';
 const CountrySelector: React.FC = () => {
   const { selectedCountry } = useCountrySelector();
 
+  const [isOpen, setOpen] = useState<boolean>(false);
+
+  const handleToggle = () => {
+    setOpen(previousState => !previousState);
+  }
+
   return (
-    <div className="country-selector">
-      <SelectPicker
-        labelText="Select a country"
-        emptyText="No country selected"
-        selectedOption={
-          selectedCountry && { name: selectedCountry.name, logoUrl: selectedCountry.flag }
-        }
-      >
-        <CountrySelect />
-      </SelectPicker>
-    </div>
+    <SelectPicker
+      labelText="Select a country"
+      emptyText="No country selected"
+      selectedOption={
+        selectedCountry && { name: selectedCountry.name, logoUrl: selectedCountry.flag }
+      }
+      onClick={handleToggle}
+    >
+      {isOpen && <CountrySelect onClick={handleToggle} />}
+    </SelectPicker>
   )
 }
 

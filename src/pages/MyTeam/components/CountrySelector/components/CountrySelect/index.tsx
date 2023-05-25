@@ -3,10 +3,21 @@ import Typography from "../../../../../../components/Typography";
 
 import { useCountrySelector } from "../../../../hooks/useCountrySelector";
 
-const CountrySelect: React.FC = () => {
+interface Props {
+  onClick: () => void;
+}
+
+const CountrySelect: React.FC<Props> = props => {
+  const { onClick } = props;
+
   const { selectedCountry, changeSelectedCountry } = useCountrySelector();
 
   const { countriesResponse } = useCountrySelector();
+
+  const handleChange = (optionId: string) => {
+    changeSelectedCountry(optionId);
+    onClick();
+  }
 
   const { data, error, isLoading } = countriesResponse;
 
@@ -25,7 +36,7 @@ const CountrySelect: React.FC = () => {
     <Select 
       selectedOptionId={selectedCountry?.name} 
       options={countriesOptions} 
-      onChange={changeSelectedCountry} 
+      onChange={handleChange} 
     />
   )
 }
