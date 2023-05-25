@@ -1,0 +1,7 @@
+.typography.primary {
+  color: var(--text-primary);
+}
+
+.typography.secondary {
+  color: var(--text-secondary);
+}
