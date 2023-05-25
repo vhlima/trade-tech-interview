@@ -45,7 +45,7 @@ const SignInForm: React.FC<Props> = props => {
         onChange={e => setAccessToken(e.target.value)} 
       />
 
-      <Button type="submit" disabled={!accessToken}>
+      <Button type="submit" disabled={!accessToken} fullWidth>
         Sign in
       </Button>
     </form>
