@@ -5,3 +5,8 @@
   font-weight: 500;
   background-color: var(--color-primary);
 }
+
+.button.primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
