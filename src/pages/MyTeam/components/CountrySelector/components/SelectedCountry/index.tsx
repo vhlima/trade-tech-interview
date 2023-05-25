@@ -3,8 +3,7 @@ import { BsChevronDown } from 'react-icons/bs';
 import { useCountrySelector } from '../../../../hooks/useCountrySelector';
 
 import Typography from '../../../../../../components/Typography';
-
-import CountryButton from '../CountryButton';
+import ToggleOption from '../../../../../../components/ToggleOption';
 
 import './styles.css';
 
@@ -19,16 +18,16 @@ const SelectedCountry: React.FC<Props> = props => {
 
   const selectedCountryWithDefault = {
     name: selectedCountry ? selectedCountry.name : 'No country selected',
-    flagUrl: selectedCountry ? selectedCountry.flag : '',
+    logoUrl: selectedCountry ? selectedCountry.flag : '',
   }
 
   return (
     <div className="country-selector-selected">
       <Typography component="p" color="primary" fontWeight="bold">{selectedCountry ? 'Selected country' : 'Select a country'}</Typography>
 
-      <CountryButton {...selectedCountryWithDefault} onClick={onClick}>
+      <ToggleOption className="country-selector-button" {...selectedCountryWithDefault} onClick={onClick}>
         <BsChevronDown size={20} />
-      </CountryButton>
+      </ToggleOption>
     </div>
   )
 }

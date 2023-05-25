@@ -6,7 +6,5 @@
   overflow-y: auto;
   max-height: 10rem;
 
-  margin-top: 1rem;
-
   background-color: var(--background-secondary);
 }

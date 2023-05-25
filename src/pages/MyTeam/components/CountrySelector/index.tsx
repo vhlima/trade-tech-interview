@@ -16,7 +16,7 @@ const CountrySelector: React.FC = () => {
     <div className="country-selector">
       <SelectedCountry onClick={() => setOpen(previousState => !previousState)} />
 
-      {isOpen && <CountryList selectedCountryId={selectedCountry?.code} onSelect={country => {
+      {isOpen && <CountryList selectedCountryId={selectedCountry?.name} onSelect={country => {
         changeSelectedCountry(country);
         setOpen(false);
       }} />}

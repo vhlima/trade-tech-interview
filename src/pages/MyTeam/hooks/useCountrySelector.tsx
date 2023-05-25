@@ -8,7 +8,7 @@ export type Country = {
   flag: string;
 }
 
-type ChangeSelectedCountry = (country: Country) => void;
+type ChangeSelectedCountry = (countryId: string) => void;
 
 interface CountrySelectorContextData {
   countriesResponse: {
@@ -26,10 +26,6 @@ export const CountrySelectorProvider: React.FC<PropsWithChildren> = props => {
   const { children } = props;
 
   const [selectedCountry, setSelectedCountry] = useState<Country | undefined>(undefined);
-  
-  const changeSelectedCountry: ChangeSelectedCountry = country => {
-    setSelectedCountry(country);
-  }
 
   const countriesResponse = useFetchFootballAPI<Country[]>({
     route: '',
@@ -39,6 +35,18 @@ export const CountrySelectorProvider: React.FC<PropsWithChildren> = props => {
       "flag": "https://media.api-sports.io/flags/gb.svg"
     }))
   });
+
+  const changeSelectedCountry: ChangeSelectedCountry = countryId => {
+    if(!countriesResponse.data) {
+      return;
+    }
+
+    const countryFound = countriesResponse.data.find(country => country.name === countryId);
+    
+    if(countryFound) {
+      setSelectedCountry(countryFound);
+    }
+  }
 
   return (
     <CountrySelectorContext.Provider value={{
