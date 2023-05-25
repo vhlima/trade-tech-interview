@@ -9,3 +9,7 @@
 .typography.error {
   color: red;
 }
+
+.typography.bold {
+  font-weight: 600;
+}

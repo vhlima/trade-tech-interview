@@ -6,11 +6,12 @@ import './styles.css';
 
 interface Props extends HtmlHTMLAttributes<HTMLParagraphElement> {
   component: ElementType;
+  fontWeight?: 'regular' | 'bold';
   color?: 'primary' | 'secondary' | 'error';
 }
 
 export const Typography: React.FC<PropsWithChildren<Props>> = props => {
-  const { className, color = 'secondary', component, children, ...rest } = props;
+  const { className, color = 'secondary', fontWeight = 'regular', component, children, ...rest } = props;
 
   const ElementComponent = component;
 
@@ -18,6 +19,7 @@ export const Typography: React.FC<PropsWithChildren<Props>> = props => {
     <ElementComponent
       className={clsx('typography', 
         color,
+        fontWeight,
         className && className,
       )}
       {...rest}
