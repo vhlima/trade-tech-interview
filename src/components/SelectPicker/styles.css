@@ -1,0 +1,13 @@
+.select-picker {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+}
+
+.select-picker-selected p {
+  margin-bottom: 0.5rem;
+}
+
+.select-picker-button svg {
+  margin-left: auto;
+}
