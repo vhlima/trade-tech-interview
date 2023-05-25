@@ -5,3 +5,7 @@
 .typography.secondary {
   color: var(--text-secondary);
 }
+
+.typography.error {
+  color: red;
+}

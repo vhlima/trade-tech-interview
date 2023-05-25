@@ -6,7 +6,7 @@ import './styles.css';
 
 interface Props extends HtmlHTMLAttributes<HTMLParagraphElement> {
   component: ElementType;
-  color?: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'error';
 }
 
 export const Typography: React.FC<PropsWithChildren<Props>> = props => {
