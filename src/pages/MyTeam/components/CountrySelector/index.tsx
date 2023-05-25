@@ -1,25 +1,24 @@
-import { useState } from 'react';
-
 import { useCountrySelector } from '../../hooks/useCountrySelector';
 
-import CountryList from './components/CountryList';
-import SelectedCountry from './components/SelectedCountry';
+import SelectPicker from '../../../../components/SelectPicker';
+import CountrySelect from './components/CountrySelect';
 
 import './styles.css';
 
 const CountrySelector: React.FC = () => {
-  const { selectedCountry, changeSelectedCountry } = useCountrySelector();
-
-  const [isOpen, setOpen] = useState<boolean>(false);
+  const { selectedCountry } = useCountrySelector();
 
   return (
     <div className="country-selector">
-      <SelectedCountry onClick={() => setOpen(previousState => !previousState)} />
-
-      {isOpen && <CountryList selectedCountryId={selectedCountry?.name} onSelect={country => {
-        changeSelectedCountry(country);
-        setOpen(false);
-      }} />}
+      <SelectPicker
+        labelText="Select a country"
+        emptyText="No country selected"
+        selectedOption={
+          selectedCountry && { name: selectedCountry.name, logoUrl: selectedCountry.flag }
+        }
+      >
+        <CountrySelect />
+      </SelectPicker>
     </div>
   )
 }
