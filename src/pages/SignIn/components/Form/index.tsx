@@ -40,7 +40,7 @@ const SignInForm: React.FC<Props> = props => {
         <small>You can retrieve the access token from your api-football account.</small>
       </div>
 
-      <Button type="submit">
+      <Button type="submit" disabled={!accessToken}>
         Sign in
       </Button>
     </form>
