@@ -6,6 +6,8 @@ import { useSession } from '../../../../hooks/useSession';
 
 import { useErrorHandler } from '../../../../hooks/useErrorHandler';
 
+import Typography from '../../../../components/Typography';
+
 import './styles.css';
 
 type Props = Omit<HTMLAttributes<HTMLFormElement>, 'onSubmit'>;
@@ -30,7 +32,7 @@ const SignInForm: React.FC<Props> = props => {
   return (
     <form className="signin-form" onSubmit={handleSubmit} {...props}>
       {errorMessage && (
-        <p className="form-error">{errorMessage}</p>
+        <Typography className="form-error" component="p" color="error">{errorMessage}</Typography>
       )}
 
       <div className="signin-input-container">
