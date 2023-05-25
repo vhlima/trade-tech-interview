@@ -1,6 +1,6 @@
 import { BiFootball } from 'react-icons/bi';
 
-import { Typography } from '../../../../components/Typography';
+import Typography from '../../../../components/Typography';
 
 import './styles.css';
 

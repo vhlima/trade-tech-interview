@@ -10,7 +10,7 @@ interface Props extends HtmlHTMLAttributes<HTMLParagraphElement> {
   color?: 'primary' | 'secondary' | 'error';
 }
 
-export const Typography: React.FC<PropsWithChildren<Props>> = props => {
+const Typography: React.FC<PropsWithChildren<Props>> = props => {
   const { className, color = 'secondary', fontWeight = 'regular', component, children, ...rest } = props;
 
   const ElementComponent = component;
@@ -28,3 +28,5 @@ export const Typography: React.FC<PropsWithChildren<Props>> = props => {
     </ElementComponent>
   );
 };
+
+export default Typography;
