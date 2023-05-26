@@ -6,7 +6,7 @@ import './styles.css';
 
 type Option = {
   name: string;
-  logoUrl: string;
+  logoUrl?: string;
 }
 
 interface Props  {

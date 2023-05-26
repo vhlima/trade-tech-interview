@@ -13,7 +13,7 @@ interface Props {
   emptyText: string;
   selectedOption?: {
     name: string;
-    logoUrl: string;
+    logoUrl?: string;
   };
   onClick: () => void;
 }
