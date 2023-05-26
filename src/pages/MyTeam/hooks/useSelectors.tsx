@@ -2,18 +2,20 @@ import { type PropsWithChildren, createContext, useContext, useState } from "rea
 
 import { type FetchFootballAPIContextData, useLazyFetchFootballAPI } from "../../../hooks/useLazyFetchFootballAPI";
 
-export type Country = {
+type Country = {
   name: string;
   code: string;
   flag: string;
 }
 
-export type League = {
+type League = {
   name: string;
   logo: string;
 }
 
-export type Team = {
+type LeagueSeason = number;
+
+type Team = {
   name: string;
   logo: string;
 }
@@ -32,6 +34,10 @@ interface SelectorsData {
   teamsQuery: FetchFootballAPIContextData<Team[]>;
   selectedTeam?: Team;
   changeSelectedTeam: ChangeSlected;
+
+  seasonsQuery: FetchFootballAPIContextData<LeagueSeason[]>;
+  selectedSeason?: number;
+  changeSelectedSeason: ChangeSlected;
 }
 
 const SelectorsContext = createContext({} as SelectorsData);
@@ -42,6 +48,7 @@ export const SelectorsProvider: React.FC<PropsWithChildren> = props => {
   const [selectedCountry, setSelectedCountry] = useState<Country | undefined>();
   const [selectedLeague, setSelectedLeague] = useState<League | undefined>();
   const [selectedTeam, setSelectedTeam] = useState<Team | undefined>();
+  const [selectedSeason, setSelectedSeason] = useState<LeagueSeason | undefined>();
   
   const countriesQuery = useLazyFetchFootballAPI<Country[]>({ 
     route: '', 
@@ -57,6 +64,11 @@ export const SelectorsProvider: React.FC<PropsWithChildren> = props => {
       "name": `Premier League ${index}`,
       "logo": "https://media.api-sports.io/football/leagues/2.png"
     }))
+  });
+
+  const seasonsQuery = useLazyFetchFootballAPI<LeagueSeason[]>({
+    route: '',
+    mock: Array.from({ length: 10 }).map((_, index) => 2010 + index)
   });
 
   const teamsQuery = useLazyFetchFootballAPI<Team[]>({
@@ -88,8 +100,19 @@ export const SelectorsProvider: React.FC<PropsWithChildren> = props => {
     
     if(leagueFound && leagueFound.name !== selectedLeague?.name) {
       setSelectedLeague(leagueFound);
+      setSelectedSeason(undefined);
+      setSelectedTeam(undefined);
+
+      seasonsQuery.resetData();
       teamsQuery.resetData();
     }
+  }
+
+  const changeSelectedSeason: ChangeSlected = seasonId => {
+    setSelectedSeason(parseInt(seasonId, 10));
+    setSelectedTeam(undefined);
+
+    teamsQuery.resetData();
   }
 
   const changeSelectedTeam: ChangeSlected = teamId => {
@@ -112,6 +135,9 @@ export const SelectorsProvider: React.FC<PropsWithChildren> = props => {
       teamsQuery,
       selectedTeam,
       changeSelectedTeam,
+      selectedSeason,
+      seasonsQuery,
+      changeSelectedSeason,
     }}>
       {children}
     </SelectorsContext.Provider>
