@@ -13,6 +13,11 @@ export type League = {
   logo: string;
 }
 
+export type Team = {
+  name: string;
+  logo: string;
+}
+
 type ChangeSlected = (id: string) => void;
 
 interface SelectorsData {
@@ -23,6 +28,10 @@ interface SelectorsData {
   leaguesQuery: FetchFootballAPIContextData<League[]>;
   selectedLeague?: League;
   changeSelectedLeague: ChangeSlected;
+
+  teamsQuery: FetchFootballAPIContextData<Team[]>;
+  selectedTeam?: Team;
+  changeSelectedTeam: ChangeSlected;
 }
 
 const SelectorsContext = createContext({} as SelectorsData);
@@ -32,6 +41,7 @@ export const SelectorsProvider: React.FC<PropsWithChildren> = props => {
 
   const [selectedCountry, setSelectedCountry] = useState<Country | undefined>();
   const [selectedLeague, setSelectedLeague] = useState<League | undefined>();
+  const [selectedTeam, setSelectedTeam] = useState<Team | undefined>();
   
   const countriesQuery = useLazyFetchFootballAPI<Country[]>({ 
     route: '', 
@@ -41,11 +51,19 @@ export const SelectorsProvider: React.FC<PropsWithChildren> = props => {
       "flag": "https://media.api-sports.io/flags/gb.svg"
   }))});
 
-  const leaguesQuery = useLazyFetchFootballAPI<League[]>({
+  const leaguesQuery = useLazyFetchFootballAPI<Team[]>({
     route: '',
     mock: Array.from({ length: 10 }).map((_, index) => ({
       "name": `Premier League ${index}`,
       "logo": "https://media.api-sports.io/football/leagues/2.png"
+    }))
+  });
+
+  const teamsQuery = useLazyFetchFootballAPI<Team[]>({
+    route: '',
+    mock: Array.from({ length: 10 }).map((_, index) => ({
+      "name": `Manchester United ${index}`,
+      "logo": "https://media.api-sports.io/football/teams/33.png"
     }))
   });
 
@@ -57,8 +75,10 @@ export const SelectorsProvider: React.FC<PropsWithChildren> = props => {
       setSelectedCountry(countryFound);
 
       leaguesQuery.resetData();
+      teamsQuery.resetData();
   
       setSelectedLeague(undefined);
+      setSelectedTeam(undefined);
     }
   }
 
@@ -68,6 +88,16 @@ export const SelectorsProvider: React.FC<PropsWithChildren> = props => {
     
     if(leagueFound && leagueFound.name !== selectedLeague?.name) {
       setSelectedLeague(leagueFound);
+      teamsQuery.resetData();
+    }
+  }
+
+  const changeSelectedTeam: ChangeSlected = teamId => {
+    const teamFound = 
+      (teamsQuery.data || []).find(team => team.name === teamId);
+    
+    if(teamFound && teamFound.name !== selectedTeam?.name) {
+      setSelectedTeam(teamFound);
     }
   }
 
@@ -79,6 +109,9 @@ export const SelectorsProvider: React.FC<PropsWithChildren> = props => {
       leaguesQuery,
       selectedLeague,
       changeSelectedLeague,
+      teamsQuery,
+      selectedTeam,
+      changeSelectedTeam,
     }}>
       {children}
     </SelectorsContext.Provider>
