@@ -1,17 +1,18 @@
 import { useState } from 'react';
 
-import { useLeagueSelector } from '../../hooks/useLeagueSelector';
+import { useSelectors } from '../../hooks/useSelectors';
 
 import SelectPicker from '../../../../components/SelectPicker';
 
 import LeagueSelect from './components/LeagueSelect';
 
 const LeagueSelector: React.FC = () => {
-  const { selectedLeague } = useLeagueSelector();
+  const { selectedLeague, leaguesQuery } = useSelectors();
 
   const [isOpen, setOpen] = useState<boolean>(false);
 
-  const handleToggle = () => {
+  const handleToggle = async () => {
+    leaguesQuery.fetch();
     setOpen(previousState => !previousState);
   }
 

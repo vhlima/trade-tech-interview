@@ -1,7 +1,7 @@
 import Select from "../../../../../../components/Select";
 import Typography from "../../../../../../components/Typography";
 
-import { useCountrySelector } from "../../../../hooks/useCountrySelector";
+import { useSelectors } from "../../../../hooks/useSelectors";
 
 interface Props {
   onClick: () => void;
@@ -10,16 +10,14 @@ interface Props {
 const CountrySelect: React.FC<Props> = props => {
   const { onClick } = props;
 
-  const { selectedCountry, changeSelectedCountry } = useCountrySelector();
-
-  const { countriesResponse } = useCountrySelector();
+  const { countriesQuery, selectedCountry, changeSelectedCountry } = useSelectors();
 
   const handleChange = (optionId: string) => {
     changeSelectedCountry(optionId);
     onClick();
   }
 
-  const { data, error, isLoading } = countriesResponse;
+  const { data, error, isLoading } = countriesQuery;
 
   if(isLoading) {
     return <Typography component="p">Loading...</Typography>;

@@ -1,7 +1,7 @@
-import { useLeagueSelector } from "../../../../hooks/useLeagueSelector";
-
 import Select from "../../../../../../components/Select";
 import Typography from "../../../../../../components/Typography";
+
+import { useSelectors } from "../../../../hooks/useSelectors";
 
 interface Props {
   onClick: () => void;
@@ -10,16 +10,14 @@ interface Props {
 const LeagueSelect: React.FC<Props> = props => {
   const { onClick } = props;
 
-  const { selectedLeague, changeSelectedLeague } = useLeagueSelector();
-
-  const { leaguesResponse } = useLeagueSelector();
+  const { leaguesQuery, selectedLeague, changeSelectedLeague } = useSelectors();
 
   const handleChange = (optionId: string) => {
     changeSelectedLeague(optionId);
     onClick();
   }
 
-  const { data, error, isLoading } = leaguesResponse;
+  const { data, error, isLoading } = leaguesQuery;
 
   if(isLoading) {
     return <Typography component="p">Loading...</Typography>;

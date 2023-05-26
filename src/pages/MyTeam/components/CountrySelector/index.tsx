@@ -1,16 +1,17 @@
 import { useState } from 'react';
 
-import { useCountrySelector } from '../../hooks/useCountrySelector';
+import { useSelectors } from '../../hooks/useSelectors';
 
 import SelectPicker from '../../../../components/SelectPicker';
 import CountrySelect from './components/CountrySelect';
 
 const CountrySelector: React.FC = () => {
-  const { selectedCountry } = useCountrySelector();
+  const { selectedCountry, countriesQuery } = useSelectors();
 
   const [isOpen, setOpen] = useState<boolean>(false);
 
   const handleToggle = () => {
+    countriesQuery.fetch();
     setOpen(previousState => !previousState);
   }
 
