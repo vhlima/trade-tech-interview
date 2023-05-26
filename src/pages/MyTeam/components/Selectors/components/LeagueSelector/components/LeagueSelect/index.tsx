@@ -1,7 +1,7 @@
-import Select from "../../../../../../components/Select";
-import Typography from "../../../../../../components/Typography";
+import Select from "../../../../../../../../components/Select";
+import Typography from "../../../../../../../../components/Typography";
 
-import { useSelectors } from "../../../../hooks/useSelectors";
+import { useSelectors } from "../../../../../../hooks/useSelectors";
 
 interface Props {
   onClick: () => void;

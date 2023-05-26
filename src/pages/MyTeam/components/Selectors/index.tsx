@@ -1,8 +1,8 @@
 import { useSelectors } from "../../hooks/useSelectors";
 
-import CountrySelector from "../CountrySelector";
-import LeagueSelector from "../LeagueSelector";
-import TeamSelector from "../TeamSelector";
+import LeagueSelector from "./components/LeagueSelector";
+import TeamSelector from "./components/TeamSelector";
+import CountrySelector from "./components/CountrySelector";
 
 const Selectors: React.FC = () => {
   const { selectedCountry, selectedLeague } = useSelectors();

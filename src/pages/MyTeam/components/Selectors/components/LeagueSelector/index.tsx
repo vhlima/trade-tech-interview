@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { useSelectors } from '../../hooks/useSelectors';
+import { useSelectors } from '../../../../hooks/useSelectors';
 
-import SelectPicker from '../../../../components/SelectPicker';
+import SelectPicker from '../../../../../../components/SelectPicker';
 
 import LeagueSelect from './components/LeagueSelect';
 
