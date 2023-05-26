@@ -5,10 +5,15 @@ type HandleError = (error: unknown) => void;
 interface ErrorHandlerData {
   errorMessage?: string;
   handleError: HandleError;
+  resetMessage: () => void;
 }
 
 export function useErrorHandler(): ErrorHandlerData {
   const [errorMessage, setErrorMessage] = useState<string>();
+
+  const resetMessage = () => {
+    setErrorMessage(undefined);
+  }
 
   const handleError: HandleError = error => {
     if(error instanceof Error) {
@@ -21,5 +26,6 @@ export function useErrorHandler(): ErrorHandlerData {
   return {
     errorMessage,
     handleError,
+    resetMessage,
   }
 }
